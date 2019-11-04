@@ -19,16 +19,16 @@ type OpeningHoursRange = {
 const OpenRanges = ({localTimeRanges} : {localTimeRanges: LocalTimeRange[]}) => {
     return <div>
         {
-            localTimeRanges.map(range => <div>{range.start + " - " + range.end}</div>)
+            localTimeRanges.map(range => <div style={{padding: "10px"}}>{range.start + " - " + range.end}</div>)
         }
     </div>;
 };
 
 const Weekdays = ({start, end} : {start: string, end: string}) => {
     if (start === end) {
-        return <div>{start}</div>
+        return <div style={{padding: "10px"}}>{start}</div>
     } else {
-        return <div>{start + " - " + end}</div>
+        return <div style={{padding: "10px"}}>{start + " - " + end}</div>
     }
 };
 
@@ -38,6 +38,7 @@ interface IOpeningHoursProps {
 const OpeningHours = (props: IOpeningHoursProps) => {
   return <div>
       <b>Opening Hours</b>
+      <div >
       {
           props.openingHoursRanges.map(range => {
               return <div className="opening-hours">
@@ -47,6 +48,15 @@ const OpeningHours = (props: IOpeningHoursProps) => {
               }
           )
       }
+      </div>
+      <style jsx>{`
+        .opening-hours {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+      `}
+      </style>
   </div>;
 };
 
