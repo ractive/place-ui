@@ -17,9 +17,13 @@ type OpeningHoursRange = {
 };
 
 const OpenRanges = ({localTimeRanges} : {localTimeRanges: LocalTimeRange[]}) => {
+    function stripSeconds(time: string) {
+        return time.split(":").slice(0, 2).join(":");
+    }
+
     return <div>
         {
-            localTimeRanges.map(range => <div style={{padding: "10px"}}>{range.start + " - " + range.end}</div>)
+            localTimeRanges.map(range => <div style={{padding: "10px"}}>{stripSeconds(range.start) + " - " + stripSeconds(range.end)}</div>)
         }
     </div>;
 };
