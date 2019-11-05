@@ -1,4 +1,4 @@
-import { NextPage } from 'next';
+import {NextPage} from 'next';
 import ErrorPage from 'next/error'
 import Layout from '../../components/Layout';
 import fetch from 'isomorphic-unfetch';
@@ -41,7 +41,7 @@ interface IOpeningHoursProps {
 }
 const OpeningHours = (props: IOpeningHoursProps) => {
   return <div>
-      <b>Opening Hours</b>
+      <b style={{padding: "10px"}}>Opening Hours</b>
       <div >
       {
           props.openingHoursRanges.map(range => {
