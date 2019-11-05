@@ -28,19 +28,14 @@ const OpenRanges = ({localTimeRanges} : {localTimeRanges: LocalTimeRange[]}) => 
     </div>;
 };
 
-const Weekdays = ({start, end} : {start: string, end: string}) => {
-    if (start === end) {
-        return <div style={{padding: "10px"}}>{start}</div>
-    } else {
-        return <div style={{padding: "10px"}}>{start + " - " + end}</div>
-    }
-};
+const Weekdays = ({start, end} : {start: string, end: string}) =>
+    <div style={{padding: "10px"}}>{start === end ? start : start + " - " + end}</div>;
 
 interface IOpeningHoursProps {
     openingHoursRanges: OpeningHoursRange[];
 }
-const OpeningHours = (props: IOpeningHoursProps) => {
-  return <div>
+const OpeningHours = (props: IOpeningHoursProps) => (
+  <div>
       <b style={{padding: "10px"}}>Opening Hours</b>
       <div >
       {
@@ -61,8 +56,8 @@ const OpeningHours = (props: IOpeningHoursProps) => {
         }
       `}
       </style>
-  </div>;
-};
+  </div>
+);
 
 interface IPlaceProps {
     data?: {
