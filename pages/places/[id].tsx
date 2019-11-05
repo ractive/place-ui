@@ -24,7 +24,9 @@ const OpenRanges = ({localTimeRanges} : {localTimeRanges: LocalTimeRange[]}) => 
 
     return <div>
         {
-            localTimeRanges.map(range => <div style={{padding: "10px"}}>{stripSeconds(range.start) + " - " + stripSeconds(range.end)}</div>)
+            localTimeRanges.length === 0
+                ? <div style={{padding: "10px"}}>closed</div>
+                : localTimeRanges.map(range => <div style={{padding: "10px"}}>{stripSeconds(range.start) + " - " + stripSeconds(range.end)}</div>)
         }
     </div>;
 };
