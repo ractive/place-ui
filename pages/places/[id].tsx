@@ -3,6 +3,7 @@ import ErrorPage from 'next/error'
 import Layout from '../../components/Layout';
 import fetch from 'isomorphic-unfetch';
 import * as React from "react";
+import Card from "../../components/Card";
 
 type LocalTimeRange = {
     start: string;
@@ -29,15 +30,14 @@ const OpenRanges = ({localTimeRanges} : {localTimeRanges: LocalTimeRange[]}) => 
 };
 
 const Weekdays = ({start, end} : {start: string, end: string}) =>
-    <div style={{padding: "10px"}}>{start === end ? start : start + " - " + end}</div>;
+    <div style={{padding: "10px 10px 10px 0"}}>{start === end ? start : start + " - " + end}</div>;
 
 interface IOpeningHoursProps {
     openingHoursRanges: OpeningHoursRange[];
 }
 const OpeningHours = (props: IOpeningHoursProps) => (
-  <div>
-      <b style={{padding: "10px"}}>Opening Hours</b>
-      <div >
+  <>
+      <div>
       {
           props.openingHoursRanges.map(range => {
               return <div className="opening-hours">
@@ -56,7 +56,7 @@ const OpeningHours = (props: IOpeningHoursProps) => (
         }
       `}
       </style>
-  </div>
+  </>
 );
 
 interface IPlaceProps {
@@ -77,13 +77,12 @@ const Place: NextPage<IPlaceProps> = ({error, data}) => {
         return (
             <Layout>
                 <div className="container">
-                    <div>
-                        <p>{data.name}</p>
+                    <Card title={data.name}>
                         <p>{data.address}</p>
-                    </div>
-                    <div>
+                    </Card>
+                    <Card title="Opening Hours">
                         <OpeningHours openingHoursRanges={data.openingHoursRanges}/>
-                    </div>
+                    </Card>
                 </div>
                 <style jsx>{`
                     .container {
